@@ -1,0 +1,33 @@
+{
+  "name": "gi",
+  "version": "0.0.1",
+  "description": "Shorten Github URLs with Github's Git.io service.",
+  "keywords": [
+    "github",
+    "git.io",
+    "shortener",
+    "url"
+  ],
+  "author": {
+    "name": "James Womack",
+    "email": "james@nblgstr.com"
+  },
+  "bin": "./main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jameswomack/gi.git"
+  },
+  "dependencies": {
+    "commander": "1.x",
+    "copy-paste": "~0.1.0"
+  },
+  "main": "main",
+  "engines": {
+    "node": ">= 0.8.x"
+  },
+  "_id": "gus@1.0.0",
+  "bin": {
+    "gi": "main.js"
+  },
+  "preferGlobal": true
+}
