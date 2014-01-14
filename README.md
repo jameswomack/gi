@@ -1,41 +1,37 @@
-# gus #
+# gi #
 
-Shorten your Github repo urls with Github's [Git.io](http://git.io) service.
+Shorten Github URLs with Github's [Git.io](http://git.io) service.
 
 
 ## Features ##
 
 - Pastes the url to your clipboard
-- Opens the url in your default browser
-
+- Require or use from the command line
+- Works on all 3 major platforms
 
 ## Installation ##
 
-    $ npm install gus
+    $ npm install gi
 
 
 ## Usage ##
 
-    var gus = require( 'gus' );
+    var gi = require( 'gi' );
 
-    gus( url );
+    gi(originalURL, function(err, shortURL){});
 
 
 ## Command Line Usage ##
 
 Installing the module locally ([without the `-g` flag](https://npmjs.org/doc/install.html)) requires a little more verbosity:
 
-    $ node path/to/gus [url]
+    $ node path/to/gi [url]
 
 With a global installation:
 
-    $ npm install -g gus
+    $ npm install -g gi
 
 You can use it like any other command:
 
-    $ gus [url]
+    $ gi [url]
 
-
-## Known Issues ##
-
-So far it only works on OSX (uses the `echo` and `pbcopy` unix commands). Support for other platforms coming soon.
