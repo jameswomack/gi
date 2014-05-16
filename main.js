@@ -69,8 +69,7 @@ function gi(URL, callback) {
         } else {
           if (err) {
             throw err;
-          }
-          else {
+          } else {
             throw new Error('URL converted to ' + data.headers.location + ' but no callback was provided.');
           }
         }

@@ -1,6 +1,6 @@
 {
   "name": "gi",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Shorten Github URLs with Github's Git.io service.",
   "keywords": [
     "github",
@@ -12,7 +12,6 @@
     "name": "James Womack",
     "email": "james@nblgstr.com"
   },
-  "bin": "./main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jameswomack/gi.git"
