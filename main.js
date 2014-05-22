@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
-var http = require('http');
-var copyPaste = require('copy-paste'),
-    program = require('commander'), 
+require('copy-paste');
+
+var http = require('http'),
+    url = require('url'),
+    program = require('commander'),
     querystring = require('querystring'),
     errorMessagePrefix = 'A failure occurred. The response status is ';
 
@@ -12,24 +14,40 @@ program
   .parse(process.argv);
 
 function gi(URL, callback) {
-    var encoded = querystring.encode({ url: URL || process.argv[2] });
+    var options = null,
+        path = 'git.io';
 
-    var request = http.request({
-        host: 'git.io',
-        method: 'POST',
+    if(process.env.HTTP_PROXY) {
+      var parsedUrl = url.parse(process.env.HTTP_PROXY);
+      options = {
+        hostname: parsedUrl.hostname,
+        port: parsedUrl.port,
+        path: 'http://' + path,
         headers: {
-            'Content-Length': encoded.length
+          Host: path
         }
-    }, function(data) {
-      var statusCodes = [ '200', '201' ], 
+      };
+    } else {
+      options = {
+        host: path,
+        headers: {}
+      };
+    }
+
+    var encoded = querystring.encode({ url: URL || process.argv[2] });
+    options.headers['Content-Length'] = encoded.length;
+    options.method = 'POST';
+
+    var request = http.request(options, function(data) {
+      var statusCodes = [ '200', '201' ],
           status = data.statusCode;
-      
+
       var requestSucceeded = statusCodes.some(function(code) {
           return status <= code;
       });
-      
+
       if (program.args.length) {
-        if (requestSucceeded){ 
+        if (requestSucceeded){
           console.info(data.headers.location);
           copy(data.headers.location, function(){
             process.exit(0);
@@ -49,10 +67,11 @@ function gi(URL, callback) {
         if (callback) {
           callback(err, data.headers.location);
         } else {
-          if (err)
+          if (err) {
             throw err;
-          else
+          } else {
             throw new Error('URL converted to ' + data.headers.location + ' but no callback was provided.');
+          }
         }
       }
     });
@@ -62,7 +81,8 @@ function gi(URL, callback) {
     return {originalURL: URL, callbackUsed: !!callback};
 }
 
-if (program.args.length) 
+if (program.args.length) {
   gi();
-else
+} else {
   module.exports = gi;
+}
