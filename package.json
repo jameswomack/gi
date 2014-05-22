@@ -17,15 +17,20 @@
     "url": "https://github.com/jameswomack/gi.git"
   },
   "dependencies": {
-    "commander": "1.x",
     "copy-paste": "~0.1.0"
   },
   "main": "main",
   "engines": {
     "node": ">= 0.8.x"
   },
+  "scripts": {
+    "test": "mocha"
+  },
   "bin": {
     "gi": "main.js"
   },
-  "preferGlobal": true
+  "preferGlobal": true,
+  "devDependencies": {
+    "should": "~3.3.1"
+  }
 }
