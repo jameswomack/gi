@@ -1,6 +1,6 @@
 {
   "name": "gi",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Shorten Github URLs with Github's Git.io service.",
   "keywords": [
     "github",
@@ -17,7 +17,8 @@
     "url": "https://github.com/jameswomack/gi.git"
   },
   "dependencies": {
-    "copy-paste": "~0.1.0"
+    "copy-paste": "~0.1.0",
+    "commander": "~2.2.0"
   },
   "main": "main",
   "engines": {
