@@ -19,6 +19,11 @@ Shorten Github URLs with Github's [Git.io](http://git.io) service.
     var gi = require( 'gi' );
 
     gi(originalURL, function(err, shortURL){});
+    
+
+## Test ##
+
+    $ npm test
 
 
 ## Command Line Usage ##
@@ -34,4 +39,6 @@ With a global installation:
 You can use it like any other command:
 
     $ gi [url]
+    $ gi github.com/jameswomack
+    $ gi https://github.com/jameswomack
 

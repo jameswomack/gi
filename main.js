@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/*jshint -W030 */
 
 require('copy-paste');
 
@@ -17,6 +18,9 @@ function gi(URL, callback) {
     var options = null,
         path = 'git.io';
 
+    URL = URL || process.argv[2];
+    URL.match(/^https:/) || (URL = 'https://' + URL);
+
     if(process.env.HTTP_PROXY) {
       var parsedUrl = url.parse(process.env.HTTP_PROXY);
       options = {
@@ -34,7 +38,7 @@ function gi(URL, callback) {
       };
     }
 
-    var encoded = querystring.encode({ url: URL || process.argv[2] });
+    var encoded = querystring.encode({ url: URL });
     options.headers['Content-Length'] = encoded.length;
     options.method = 'POST';
 
